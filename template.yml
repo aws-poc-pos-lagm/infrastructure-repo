@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: Serverless POS System Infrastructure
+
+Resources:
+  # DynamoDB Table
+  ProductsTable:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      TableName: 'products'
+      AttributeDefinitions:
+        - AttributeName: 'productId'
+          AttributeType: 'S'
+      KeySchema:
+        - AttributeName: 'productId'
+          KeyType: 'HASH'
+      BillingMode: 'PAY_PER_REQUEST'
+
+Outputs:
+  ProductsTableName:
+    Description: "Name of the DynamoDB Table"
+    Value: !Ref ProductsTable
